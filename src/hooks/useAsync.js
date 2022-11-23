@@ -11,6 +11,7 @@ export const useAsync = ({ asyncFunction, immediate = true }) => {
 	// useCallback ensures the below useEffect is not called
 	// on every render, but only if asyncFunction changes.
 	const execute = useCallback(() => {
+
 		setAppLoadingStatus(ASYNC_STATUS.PENDING);
 		return asyncFunction()
 			.then((response) => {
@@ -23,6 +24,7 @@ export const useAsync = ({ asyncFunction, immediate = true }) => {
 				setValue(null);
 				setAppLoadingStatus(ASYNC_STATUS.ERROR);
 			});
+		
 	}, [asyncFunction]);
 
 	// Call execute if we want to fire it right away.

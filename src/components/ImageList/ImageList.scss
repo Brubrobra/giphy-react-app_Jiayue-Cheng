@@ -2,8 +2,18 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    img {
-        margin-bottom: 16px;
-    }
+
+}
+.avatar-container {
+    margin-bottom: 16px;
+    overflow: wrap;
+    position: relative;
 }
 
+
+.main-img{
+    position: relative;
+    margin-top: 50px;
+    margin-right:50px;
+    z-index: 0;
+}

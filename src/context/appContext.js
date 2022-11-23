@@ -17,12 +17,13 @@ const appDefaultState = {
 
 // Create method to use context
 function useAppContext() {
-	const [appState, setAppState] = useState(appDefaultState);
+
 	const context = useContext(AppContext);
 	if (!context) {
 		// TODO: replace with proper error handling
 		throw new Error(`useAppContext must be used within a AppContextProvider`);
 	}
+	const [appState, setAppState] = context;
 
 	// Context Methods //
 
@@ -33,7 +34,6 @@ const loadImageList = useCallback(async () => {
 			...prev,
 			imageList
 		}))
-		console.log(imageList);
 		return imageList
 	} catch (e) {
 		console.error(e)
@@ -50,6 +50,7 @@ const searchImageList = useCallback(async (params) => {
 			...prev,
 			imageList
 		}))
+		return imageList
 	} catch (e) {
 		console.error(e)
 	}
