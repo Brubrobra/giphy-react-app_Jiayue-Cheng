@@ -12,15 +12,15 @@ export const useAsync = ({ asyncFunction, immediate = true }) => {
 	// on every render, but only if asyncFunction changes.
 	const execute = useCallback(() => {
 		setAppLoadingStatus(ASYNC_STATUS.PENDING);
-		setValue(null);
-		setError(null);
 		return asyncFunction()
 			.then((response) => {
 				setValue(response);
+				setError(null);
 				setAppLoadingStatus(ASYNC_STATUS.SUCCESS);
 			})
 			.catch((error) => {
 				setError(error);
+				setValue(null);
 				setAppLoadingStatus(ASYNC_STATUS.ERROR);
 			});
 	}, [asyncFunction]);
@@ -32,6 +32,6 @@ export const useAsync = ({ asyncFunction, immediate = true }) => {
 		if (immediate) {
 			execute();
 		}
-	});
+	},[]);
 	return { execute, value, error };
 };

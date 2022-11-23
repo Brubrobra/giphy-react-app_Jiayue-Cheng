@@ -3,10 +3,12 @@ import { useAppContext } from "../../context/appContext";
 import { useAsync } from "../../hooks/useAsync";
 import { LoadingSpinner } from "../LoadingSpinner";
 import './ImageList.scss'
+
 export const ImageList = () => {
 	const { appState, loadImageList } = useAppContext()
 	const { imageList, appStatus } = appState
 	const isAppLoading = appStatus === ASYNC_STATUS.PENDING
+
 
 	useAsync({asyncFunction: loadImageList})
 
